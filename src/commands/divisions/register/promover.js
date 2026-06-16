@@ -55,7 +55,7 @@ const command = async(client, interaction, args) => {
       ![
         roles_division[roles_division.length - 1], // COMANDO
         roles_division[roles_division.length - 2], // SUB-COMANDO
-        roles_division[roles_division.length - 3]  // INSTRUTOR
+        roles_division[roles_division.length - 3]  // SUPERVISOR
       ]
         .some((role) => interaction.member.roles.cache.has(role))
     ) {
@@ -160,7 +160,7 @@ const command = async(client, interaction, args) => {
       }
     ], '#00FF00');
 
-    return channel.send({ components: [ container ], flags: MessageFlags.IsComponentsV2 });
+    return channel.send({ components: [ container ], flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [ 'users' ], roles: [] } });
   } catch(err) {
     return Errors(err, `Command ${__filename}`)
       .then(() => command(client, interaction, args))

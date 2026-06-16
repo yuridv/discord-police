@@ -53,7 +53,8 @@ const Modal = async(client, modal) => {
       ![
         roles_division[roles_division.length - 1], // COMANDO
         roles_division[roles_division.length - 2], // SUB-COMANDO
-        roles_division[roles_division.length - 3] // INSTRUTOR
+        roles_division[roles_division.length - 3], // SUPERVISOR
+        roles_division[roles_division.length - 4] // INSTRUTOR
       ]
         .some((role) => values.recruiter.member.roles.cache.has(role))
     ) {
@@ -105,8 +106,7 @@ const Modal = async(client, modal) => {
         description:
           `\n\n> ### ${emojis.handcuffs} ・ ***Informações da Divisão:***` +
           `\n ・ **Divisão:** <@&${roles_division[0]}>` +
-          `\n ・ **Batalhão:** ${values?.battalion.toUpperCase()}`
-          // `\n ・ **Batalhão:** <@&${role_battalion}>`
+          `\n ・ **Batalhão:** <@&${role_battalion}>`
       },
       { type: 'separator' },
       {
@@ -144,7 +144,7 @@ const Modal = async(client, modal) => {
 
     const container = await Container(items, '#FFFF00');
 
-    await channel.send({ components: [ container ], flags: MessageFlags.IsComponentsV2 });
+    await channel.send({ components: [ container ], flags: MessageFlags.IsComponentsV2, allowedMentions: { parse: [ 'users' ], roles: [] } });
 
     await modal.member.roles.add(config.divisions.roles.register.waiting).catch(() => {});
 

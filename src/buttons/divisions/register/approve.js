@@ -35,7 +35,8 @@ const button = async(client, interaction, args) => {
       ![
         roles_division[roles_division.length - 1], // COMANDO
         roles_division[roles_division.length - 2], // SUB-COMANDO
-        roles_division[roles_division.length - 3]  // INSTRUTOR
+        roles_division[roles_division.length - 3], // SUPERVISOR
+        roles_division[roles_division.length - 4]  // INSTRUTOR
       ]
         .some((role) => interaction.member.roles.cache.has(role))
     ) {
@@ -82,6 +83,7 @@ const button = async(client, interaction, args) => {
 
         config.divisions.roles.register.battalions.militar,
         config.divisions.roles.register.battalions.civil,
+        config.divisions.roles.register.battalions.penal,
         config.divisions.roles.register.battalions.exercito
       ]);
 
@@ -94,10 +96,33 @@ const button = async(client, interaction, args) => {
         roles_division[1] // Probatório da Divisão
       ]);
 
-      await user.setNickname(`${division.toUpperCase()}・${userName} [${userPassport}]`);
+      const myDivisions = [];
+      if (user.roles.cache.has(config.divisions.roles.register.unidades.graer[0])) {
+        myDivisions.push('GRAER');
+      }
+      if (user.roles.cache.has(config.divisions.roles.register.unidades.speed[0])) {
+        myDivisions.push('SPEED');
+      }
+      if (user.roles.cache.has(config.divisions.roles.register.unidades.gtm[0])) {
+        myDivisions.push('GTM');
+      }
+
+      const MAX_NICK = 32;
+
+      const nickDivisions = myDivisions.join('/').toUpperCase() + '・';
+      const nickPassport = ` [${userPassport}]`;
+
+      const fixedLength = nickDivisions.length + nickPassport.length;
+      const maxUserNameLength = MAX_NICK - fixedLength;
+
+      const trimmedUserName = userName.slice(0, Math.max(0, maxUserNameLength));
+
+      const nickName = nickDivisions + trimmedUserName + nickPassport;
+
+      await user.setNickname(nickName).catch(() => {});
     }
 
-    return interaction.message.edit({ components: [ container ] });
+    // return interaction.message.edit({ components: [ container ] });
   } catch(err) {
     return Errors(err, `Button ${__filename}`)
       .then(() => button(client, interaction))

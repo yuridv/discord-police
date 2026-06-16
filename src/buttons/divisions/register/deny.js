@@ -26,7 +26,8 @@ const button = async(client, interaction, args) => {
       ![
         roles_division[roles_division.length - 1], // COMANDO
         roles_division[roles_division.length - 2], // SUB-COMANDO
-        roles_division[roles_division.length - 3]  // INSTRUTOR
+        roles_division[roles_division.length - 3], // SUPERVISOR
+        roles_division[roles_division.length - 4]  // INSTRUTOR
       ]
         .some((role) => interaction.member.roles.cache.has(role))
     ) {

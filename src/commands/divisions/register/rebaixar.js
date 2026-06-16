@@ -55,7 +55,7 @@ const command = async(client, interaction, args) => {
       ![
         roles_division[roles_division.length - 1], // COMANDO
         roles_division[roles_division.length - 2], // SUB-COMANDO
-        roles_division[roles_division.length - 3]  // INSTRUTOR
+        roles_division[roles_division.length - 3]  // SUPERVISOR
       ]
         .some((role) => interaction.member.roles.cache.has(role))
     ) {
@@ -103,7 +103,7 @@ const command = async(client, interaction, args) => {
         .setDescription(`${emojis.error} • Você não tem permissão para rebaixar um oficial com patente igual ou superior à sua.`)
         .setColor('#FF0000');
 
-      return interaction.reply({ embeds: [ embed ], flags: MessageFlags.Ephemeral });
+      return interaction.reply({ embeds: [ embed ], flags: MessageFlags.Ephemeral, allowedMentions: { parse: [ 'users' ], roles: [] } });
     }
 
     // Remover cargo atual e adicionar o anterior

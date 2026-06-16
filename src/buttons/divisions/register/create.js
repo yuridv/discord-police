@@ -88,6 +88,7 @@ const camps = [
     options: [
       { label: '・Militar', value: 'militar', emoji: '🚨' },
       { label: '・Civil', value: 'civil', emoji: '🕵️‍♀️' },
+      { label: '・Penal', value: 'penal', emoji: '🔦' },
       { label: '・Exército', value: 'exercito', emoji: '🪂' }
     ],
     max: 1,
