@@ -122,7 +122,7 @@ const button = async(client, interaction, args) => {
       await user.setNickname(nickName).catch(() => {});
     }
 
-    // return interaction.message.edit({ components: [ container ] });
+    return interaction.message.edit({ components: [ container ] });
   } catch(err) {
     return Errors(err, `Button ${__filename}`)
       .then(() => button(client, interaction))
