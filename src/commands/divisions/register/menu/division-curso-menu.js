@@ -40,7 +40,8 @@ const command = async(client, interaction, args) => {
           '\n\n> ### ***Informações:***' +
           '\n• *Após fazer a sua solicitação de curso, você precisa aguardar até que um dos nossos* ***__Instrutores__*** *aprove o seu horário solicitado!*' +
           `\n• *Você pode acompanhar o status da sua solicitação em <#${config.divisions.channels.curso.approve}>!*` +
-          '\n• *Você terá que comparecer ao horário marcado com* ***10 minutos*** *de antecedência!*' +
+          '\n• *O* ***local do curso*** *será escolhido pelo instrutor quando ele aprovar a sua solicitação!*' +
+          '\n• *Você terá que comparecer ao local marcado com* ***10 minutos*** *de antecedência!*' +
           '\n• *Caso você não compareça no horário marcado, você precisará solicitar outro curso!*' +
 
           `\n\n*__Atenciosamente ${client.user.username}__*`

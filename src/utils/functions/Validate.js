@@ -187,6 +187,47 @@ const Types = {
     return rej(`O campo '${key}' não é uma data valida.`);
   }),
 
+  date_hour: async(key, values) => new Promise((res, rej) => {
+    const value = values[key];
+
+    if (typeof value !== 'string') {
+      return rej(`O campo '${key}' não é uma data válida.`);
+    }
+
+    const match = value.match(
+      /^(\d{2})\/(\d{2})\/(\d{4})\s(\d{2}):(\d{2})$/
+    );
+
+    if (!match) {
+      return rej(
+        `O campo '${key}' deve estar no formato DD/MM/AAAA HH:MM.`
+      );
+    }
+
+    const [ , day, month, year, hour, minute ] = match;
+
+    const date = new Date(
+      Number(year),
+      Number(month) - 1,
+      Number(day),
+      Number(hour),
+      Number(minute)
+    );
+
+    // valida se a data realmente existe
+    if (
+      date.getFullYear() !== Number(year) ||
+      date.getMonth() !== Number(month) - 1 ||
+      date.getDate() !== Number(day) ||
+      date.getHours() !== Number(hour) ||
+      date.getMinutes() !== Number(minute)
+    ) {
+      return rej(`O campo '${key}' não é uma data válida.`);
+    }
+
+    res();
+  }),
+
   pix: async(key, values) => new Promise(async(res,rej) => {
     values[key] = values[key].includes('@') ? values[key].toLowerCase() : values[key].replace(/\D/g, '');
     if (!values[key]) return rej(`O campo '${key}' não é um PIX valido.`);

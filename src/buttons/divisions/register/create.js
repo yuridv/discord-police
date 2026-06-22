@@ -22,7 +22,7 @@ const button = async(client, interaction) => {
     if (interaction.member.roles.cache.has(config.divisions.roles.register.waiting)) {
       const embed = new EmbedBuilder()
         .setColor('#FF0000')
-        .setDescription(`${emojis.error} • *Você já efetuou está com um* __***Registro***__ *pendente, aguarde até aprovarem!*`);
+        .setDescription(`${emojis.error} • *Você já está com um* __***Registro***__ *pendente, aguarde até aprovarem!*`);
 
       return interaction.reply({ flags: MessageFlags.Ephemeral, embeds: [ embed ] });
     }
