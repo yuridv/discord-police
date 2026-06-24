@@ -33,9 +33,10 @@ const command = async(client, interaction, args) => {
           '\n\n> ### ***Como solicitar um curso?***' +
           '\n***1º*** *Clique no botão abaixo* ***"Solicitar Curso"***' +
           '\n***2º*** *Irá abrir um menu para você preencher os dados*' +
-          '\n***3º*** *Você precisará informar seu* ***Nome, Passaporte e Telefone*** *do jogo*' +
-          '\n***4º*** *Você precisará selecionar a* ***Divisão*** *desejada*' +
-          '\n***5º*** *Você precisará informar a* ***Data e Horário*** *desejado*' +
+          '\n***3º*** *Você precisará informar seu* ***Nome e Passaporte*** *do jogo*' +
+          '\n***4º*** *Você precisará informar seu* ***Batalhão***' +
+          '\n***5º*** *Você precisará selecionar a* ***Divisão*** *desejada*' +
+          '\n***6º*** *Você precisará informar a* ***Data e Horário*** *desejado*' +
 
           '\n\n> ### ***Informações:***' +
           '\n• *Após fazer a sua solicitação de curso, você precisa aguardar até que um dos nossos* ***__Instrutores__*** *aprove o seu horário solicitado!*' +

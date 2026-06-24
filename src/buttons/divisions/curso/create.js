@@ -46,12 +46,19 @@ const camps = [
     required: true
   },
   {
-    id: 'phone', 
-    type: 'text', 
-    type_text: 'Short', 
-    title: 'Telefone', 
-    description: 'Escreva o número do seu telefone dentro da cidade.', 
-    placeholder: '123-456', 
+    id: 'battalion', 
+    type: 'select', 
+    title: 'Guarnição', 
+    description: 'Selecione a guarnição que você pertence.', 
+    placeholder: 'Selecione a guarnição', 
+    options: [
+      { label: '・Militar', value: 'militar', emoji: '🚨' },
+      { label: '・Civil', value: 'civil', emoji: '🕵️‍♀️' },
+      { label: '・Penal', value: 'penal', emoji: '🔦' },
+      { label: '・Exército', value: 'exercito', emoji: '🪂' }
+    ],
+    max: 1,
+    min: 1,
     required: true
   },
   {

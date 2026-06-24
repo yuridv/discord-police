@@ -18,7 +18,7 @@ const Modal = async(client, modal) => {
     const camps = {
       'passport': { type: 'number', required: true, guild: modal.guild },
       'name': { type: 'string', required: true },
-      'phone': { type: 'number', required: true, max: 6 },
+      'battalion': { type: 'string', required: true },
       'division': { type: 'string', required: true },
       'date': { type: 'date_hour', required: true }
     };
@@ -61,13 +61,21 @@ const Modal = async(client, modal) => {
       return modal.reply({ flags: MessageFlags.Ephemeral, embeds: [ embed ], content: `<@${modal.member.id}>` });
     }
 
-    let phone = values?.phone;
+    const role_battalion = config.divisions.roles.register.battalions[values.battalion];
+    if (!role_battalion) {
+      const embed = new EmbedBuilder()
+        .setColor('#FF0000')
+        .setDescription(`${emojis.error} • *Não foi possível encontrar o cargo do batalhão* __***${values.battalion.toUpperCase()}***__ *na configuração!*`);
 
-    if (phone?.length <= 3) {
-      phone = phone.padStart(3, '0');
-    } else if (phone?.length === 6) {
-      phone = phone.replace(/^(\d{3})(\d{3})$/, '$1-$2');
+      return modal.reply({ content: `<@${modal.user.id}>`, embeds: [ embed ], flags: MessageFlags.Ephemeral });
     }
+
+    // let phone = values?.phone;
+    // if (phone?.length <= 3) {
+    //   phone = phone.padStart(3, '0');
+    // } else if (phone?.length === 6) {
+    //   phone = phone.replace(/^(\d{3})(\d{3})$/, '$1-$2');
+    // }
 
     const items = [
       {
@@ -83,14 +91,14 @@ const Modal = async(client, modal) => {
           `\n ・ **Usuário:** <@${modal.user.id}>` +
           `\n ・ **Nome:** ${values?.name}` +
           `\n ・ **Passaporte:** ${values?.passport}` +
-          `\n ・ **Telefone:** ${phone}`
+          `\n ・ **Batalhão:** <@&${role_battalion}>`
       },
       { type: 'separator' },
       {
         type: 'textDisplay',
         description:
           `\n\n> ### ${emojis.handcuffs} ・ ***Informações da Solicitação:***` +
-          `\n ・ **Divisão:** <@&${roles_division[0]}>` +
+          `\n ・ **Divisão Solicitada:** <@&${roles_division[0]}>` +
           `\n ・ **Data Solicitada:** ${values?.date}`
       },
       { type: 'separator' },
