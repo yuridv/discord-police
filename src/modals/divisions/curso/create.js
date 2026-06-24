@@ -18,7 +18,7 @@ const Modal = async(client, modal) => {
     const camps = {
       'passport': { type: 'number', required: true, guild: modal.guild },
       'name': { type: 'string', required: true },
-      'battalion': { type: 'string', required: true },
+      'phone': { type: 'number', required: true, max: 6 },
       'division': { type: 'string', required: true },
       'date': { type: 'date_hour', required: true }
     };
@@ -61,21 +61,12 @@ const Modal = async(client, modal) => {
       return modal.reply({ flags: MessageFlags.Ephemeral, embeds: [ embed ], content: `<@${modal.member.id}>` });
     }
 
-    const role_battalion = config.divisions.roles.register.battalions[values.battalion];
-    if (!role_battalion) {
-      const embed = new EmbedBuilder()
-        .setColor('#FF0000')
-        .setDescription(`${emojis.error} • *Não foi possível encontrar o cargo do batalhão* __***${values.battalion.toUpperCase()}***__ *na configuração!*`);
-
-      return modal.reply({ content: `<@${modal.user.id}>`, embeds: [ embed ], flags: MessageFlags.Ephemeral });
+    let phone = values?.phone;
+    if (phone?.length <= 3) {
+      phone = phone.padStart(3, '0');
+    } else if (phone?.length === 6) {
+      phone = phone.replace(/^(\d{3})(\d{3})$/, '$1-$2');
     }
-
-    // let phone = values?.phone;
-    // if (phone?.length <= 3) {
-    //   phone = phone.padStart(3, '0');
-    // } else if (phone?.length === 6) {
-    //   phone = phone.replace(/^(\d{3})(\d{3})$/, '$1-$2');
-    // }
 
     const items = [
       {
@@ -90,8 +81,7 @@ const Modal = async(client, modal) => {
           `\n\n> ### ${emojis.pencil} ・ ***Informações do Solicitante:***` +
           `\n ・ **Usuário:** <@${modal.user.id}>` +
           `\n ・ **Nome:** ${values?.name}` +
-          `\n ・ **Passaporte:** ${values?.passport}` +
-          `\n ・ **Batalhão:** <@&${role_battalion}>`
+          `\n ・ **Passaporte:** ${values?.passport}`
       },
       { type: 'separator' },
       {
