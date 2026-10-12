@@ -223,7 +223,7 @@ const command = async(client, modal, args) => {
 
     await modal.reply({ content: '✅ • *Prisão atualizada com sucesso!*', flags: MessageFlags.Ephemeral });
 
-    return require('../../../buttons/prison/message').route(client, modal, [ prisonId ]);
+    return require('../../../buttons/divisions/prisons/message').route(client, modal, [ prisonId ]);
   } catch (err) {
     return Errors(err, `Command ${__filename}`)
       .then(() => command(client, modal))

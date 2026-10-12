@@ -26,7 +26,7 @@ const command = async(client, interaction, args) => {
         { name: 'Tempo de prisão', value: '240 meses', inline: true },
         { name: 'Valor em Multas', value: '$200000', inline: true }
       ])
-      .setImage('https://media.discordapp.net/attachments/1382899414288433193/1477853988329099335/image.png?ex=69a84088&is=69a6ef08&hm=f620725ba28ef69521e7896b4e5009315ee74f3876d17d2af34f94f7a80cdcf2&=&format=webp');
+      .setImage('https://media.discordapp.net/attachments/1424170165154611351/1519186335527862352/image.png?ex=6acda907&is=6acc5787&hm=f9ab17ffc544dfa09966c53aca731e1cceb9ce417160486643be382d03af8003&=&format=webp');
 
     await interaction.guild.channels.cache.get(config.divisions.channels.prisons.logs).send({ embeds: [ embed ] });
 

@@ -48,7 +48,7 @@ const button = async(client, interaction, args) => {
     }
     
     const modal = new ModalBuilder()
-      .setCustomId(`divisions/prison/edit-${camp}-${id}`)
+      .setCustomId(`divisions/prisons/edit-${camp}-${id}`)
       .setTitle('Registro de Prisão');
 
     modal.addLabelComponents(

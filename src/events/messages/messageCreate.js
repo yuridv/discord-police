@@ -49,7 +49,7 @@ const event = async(client, message) => {
 
     await prison.save();
 
-    return require('../../buttons/prison/message').route(client, message, [ prison._id ]);
+    return require('../../buttons/divisions/prisons/message').route(client, message, [ prison._id ]);
   } catch(err) {
     return Errors(err, `Event ${__filename}`)
       .then(() => event(client, message))
